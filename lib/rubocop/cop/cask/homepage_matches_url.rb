@@ -24,8 +24,8 @@ module RuboCop
         MSG_WRONG_FORMAT = '`%<comment>s` does not match the expected comment format. ' \
                            'For details, see ' + REFERENCE_URL
 
-        MSG_UNNECESSARY = '`%<domain>s` matches `%<homepage>s`, the comment above the `url` ' \
-                          'stanza is unnecessary'.freeze
+        MSG_UNNECESSARY = 'The URL\'s domain `%<domain>s` matches the homepage `%<homepage>s` ' \
+        'which makes the comment above the `url` stanza is unnecessary'.freeze
 
         def on_cask(cask_block)
           @cask_block = cask_block
@@ -52,6 +52,7 @@ module RuboCop
         def add_offense_unnecessary_comment(stanza)
           return unless comment?(stanza)
           return unless url_match_homepage?(stanza)
+          return unless comment_matches_format?(stanza)
           return unless comment_matches_url?(stanza)
 
           comment = comment(stanza).loc.expression
