@@ -76,8 +76,8 @@ describe RuboCop::Cop::Cask::HomepageMatchesUrl do
     let(:expected_offenses) do
       [{
         message: 'The URL\'s domain `foo.example.com` matches the homepage ' \
-                 '`example.com` which makes the comment above the `url` ' \
-                 'stanza is unnecessary',
+                 '`example.com`, the comment above the `url` stanza is ' \
+                 'unnecessary',
         severity: :convention,
         line: 2,
         column: 2,
